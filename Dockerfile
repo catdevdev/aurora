@@ -7,6 +7,8 @@ WORKDIR /usr/src/app
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 COPY package*.json ./
 
+RUN npm install -g @nestjs/cli
+
 # Install app dependencies
 RUN set -ex; \
       yarn install --frozen-lockfile --production --network-timeout=600000; \
