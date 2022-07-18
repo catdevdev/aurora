@@ -8,7 +8,10 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install app dependencies
-RUN yarn --network-timeout=600000
+RUN set -ex; \
+      yarn install --frozen-lockfile --production --network-timeout=600000; \
+      yarn cache clean; \
+      yarn run build
 
 # Bundle app source
 COPY . .
