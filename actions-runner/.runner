@@ -1,9 +1,0 @@
-﻿{
-  "agentId": 3,
-  "agentName": "catdevs-MacBook-Air",
-  "poolId": 1,
-  "poolName": "Default",
-  "serverUrl": "https://pipelines.actions.githubusercontent.com/KMldbmCgM0fYrh9Xq0Um64COwhH3OsyXvHRI1OIgqItt5fhGxh",
-  "gitHubUrl": "https://github.com/catdevdev/aurora",
-  "workFolder": "_work"
-}
