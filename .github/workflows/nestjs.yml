@@ -13,6 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: docker build -t dev-telegram-aurora .
+      - name: send telegram notification
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            aurora-telegram container built
+            https://github.com/${{ github.repository }}/commit/${{github.sha}}
 
   dev-deploy:
     runs-on: self-hosted
@@ -22,4 +30,11 @@ jobs:
       - run: docker stop $(docker ps -q --filter ancestor=dev-aurora-telegram )
         if: always()
       - run: docker run -d -p3000:3000 --restart=always dev-aurora-telegram
+      - name: send telegram notification
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            aurora-telegram deployed to dev
 
