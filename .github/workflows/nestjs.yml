@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: docker build -t dev-telegram-aurora .
+      - run: docker build -t dev-aurora-telegram .
 
   dev-deploy:
     runs-on: self-hosted
