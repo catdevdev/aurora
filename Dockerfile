@@ -9,7 +9,7 @@ COPY package*.json ./
 
 
 # Install app dependencies
-RUN yarn install --network-timeout 600000
+RUN yarn install --network-timeout --frozen-lockfile 600000
 
 # Bundle app source
 COPY . .
