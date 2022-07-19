@@ -13,13 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: docker build -t dev-telegram-aurora .
-      - uses: robotomize/notify-telegram@v0.1.0
-        if: always()
-        with:
-          chat: ${{ secrets.TELEGRAM_TO }} # user id or channel name secret
-          token: ${{ secrets.TELEGRAM_TOKEN }} # token secret
-          status: ${{ job.status }} # do not modify this line
-          message: "✅ aurora-telegram image docker built" # custom message
 
   dev-deploy:
     runs-on: self-hosted
@@ -27,13 +20,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: docker stop $(docker ps -q --filter ancestor=dev-aurora-telegram )
-        if: always()
       - run: docker run -d -p3000:3000 --restart=always dev-aurora-telegram
-      - uses: robotomize/notify-telegram@v0.1.0
         if: always()
-        with:
-          chat: ${{ secrets.TELEGRAM_TO }} # user id or channel name secret
-          token: ${{ secrets.TELEGRAM_TOKEN }} # token secret
-          status: ${{ job.status }} # do not modify this line
-          message: ✅ aurora-telegram deployed to dev
 
