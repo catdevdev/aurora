@@ -13,14 +13,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: docker build -t dev-telegram-aurora .
-      - name: send telegram notification
-        uses: appleboy/telegram-action@master
+      - uses: yanzay/notify-telegram@v0.1.0
+        if: always()
         with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: |
-            aurora-telegram container built
-            https://github.com/${{ github.repository }}/commit/${{github.sha}}
+          chat: ${{ secrets.TELEGRAM_TO }} # user id or channel name secret
+          token: ${{ secrets.TELEGRAM_TOKEN }} # token secret
+          status: ${{ job.status }} # do not modify this line
 
   dev-deploy:
     runs-on: self-hosted
