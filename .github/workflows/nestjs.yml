@@ -15,6 +15,13 @@ jobs:
       - run: docker stop $(docker ps -q --filter ancestor=dev-aurora-telegram )
       - run: docker build -t dev-aurora-telegram .
         if: always()
+      - name: Deploy Stage
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage?chat_id=${{ secrets.TELEGRAM_TO }}&text=123'
+          method: 'POST'
+          customHeaders: '{"Content-Type": "application/json"}'
+
 
   deploy-dev:
     if: always()
