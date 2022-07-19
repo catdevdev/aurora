@@ -18,7 +18,7 @@ jobs:
       - name: send notification to aurora group
         uses: fjogeleit/http-request-action@v1
         with:
-          url: 'https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage?chat_id=${{ secrets.TELEGRAM_TO }}&text=aurora-telegram container built'
+          url: 'https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage?chat_id=${{ secrets.TELEGRAM_TO }}&[success] text=aurora-telegram container built'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
 
@@ -32,6 +32,6 @@ jobs:
       - name: send notification to aurora group
         uses: fjogeleit/http-request-action@v1
         with:
-          url: 'https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage?chat_id=${{ secrets.TELEGRAM_TO }}&text=aurora-telegram deployed to deو'
+          url: 'https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage?chat_id=${{ secrets.TELEGRAM_TO }}&text=aurora-telegram deployed to dev'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
