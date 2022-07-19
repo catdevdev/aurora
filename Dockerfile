@@ -1,5 +1,5 @@
 # Base image
-FROM node:18
+FROM node:16
 
 # Create app directory
 WORKDIR /app
@@ -9,12 +9,12 @@ COPY package*.json ./
 
 
 # Install app dependencies
-RUN yarn install --network-timeout 600000   
+RUN npm install 
 
 # Bundle app source
 COPY . .
 
-RUN yarn build
+RUN npm run build
 
 # Start the server using the production build
 CMD [ "node", "dist/main.js" ]
