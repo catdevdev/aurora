@@ -1,5 +1,5 @@
 # Base image
-FROM node:16
+FROM node:18
 
 # Create app directory
 WORKDIR /app
@@ -9,7 +9,7 @@ COPY package*.json ./
 
 
 # Install app dependencies
-RUN yarn install --network-timeout 600000 --frozen-lockfile 
+RUN yarn install --network-timeout 600000   
 
 # Bundle app source
 COPY . .
