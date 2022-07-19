@@ -15,7 +15,7 @@ jobs:
       - run: docker stop $(docker ps -q --filter ancestor=dev-aurora-telegram )
       - run: docker build -t dev-aurora-telegram .
         if: always()
-      - name: Deploy Stage
+      - name: send notification to aurora group
         uses: fjogeleit/http-request-action@v1
         with:
           url: 'https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage?chat_id=${{ secrets.TELEGRAM_TO }}&text=✅ aurora-telegram container built'
@@ -29,3 +29,9 @@ jobs:
     needs: [build]
     steps:
       - run: docker run -d -p3000:3000 --restart=always dev-aurora-telegram
+      - name: send notification to aurora group
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage?chat_id=${{ secrets.TELEGRAM_TO }}&text=✅ aurora-telegram deployed to dev'
+          method: 'POST'
+          customHeaders: '{"Content-Type": "application/json"}'
