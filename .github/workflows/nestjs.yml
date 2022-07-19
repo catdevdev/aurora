@@ -1,0 +1,17 @@
+name: Nest.js ci/cd pipeline
+
+on:
+  push:
+    branches: ['master']
+  pull_request:
+    branches: ['master']
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3
+      - run: docker stop $(docker ps -q --filter ancestor=dev-aurora-telegram )
+      - run: docker build -t dev-telegram-aurora .
+      - run: docker run -p3000:3000 --restart=always dev-aurora-telegram
