@@ -20,6 +20,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: docker stop 6d0314a4dd2d
-      - run: docker run -d -p3000:3000 --restart=always dev-aurora-telegram
+      - run: docker run -d -p3000:3000 --restart=always 6d0314a4dd2d
         if: always()
 
