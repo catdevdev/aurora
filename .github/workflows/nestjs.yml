@@ -19,8 +19,6 @@ jobs:
     needs: [ build ]
     steps:
       - uses: actions/checkout@v3
-      - name: Stop container 
-        if: always()
-        run: docker stop $(docker ps -q --filter ancestor=dev-aurora-telegram )
+      - run: docker ps -q --filter "name=dev-aurora-telegram" | docker stop $(docker ps -q --filter ancestor=dev-aurora-telegram )
       - run: docker run -d -p3000:3000 --restart=always dev-aurora-telegram
 
