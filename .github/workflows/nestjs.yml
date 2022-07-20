@@ -18,7 +18,7 @@ jobs:
       - name: send notification to aurora group
         uses: fjogeleit/http-request-action@v1
         with:
-          url: 'https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage?chat_id=${{ secrets.TELEGRAM_TO }}&text=[success] aurora-telegram container ready'
+          url: 'https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage?chat_id=${{ secrets.TELEGRAM_TO }}&text=[success] aurora-telegram container is ready'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
 
